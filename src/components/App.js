@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { handleGetUsers } from '../actions/shared'
 import SignIn from './SignIn'
+import Home from './Home'
 
 
 class App extends Component {
@@ -12,7 +13,7 @@ class App extends Component {
     return (
       <div>
         {this.props.loggedin
-          ? "User logged in! "
+          ? <Home />
           : <SignIn />}
       </div>
     );

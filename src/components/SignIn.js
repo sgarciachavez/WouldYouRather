@@ -3,6 +3,7 @@ import logo from '../images/logo.svg'
 import { connect } from 'react-redux'
 import { DropdownButton, Dropdown } from 'react-bootstrap'
 import { handleAuthedUser } from '../actions/shared'
+import AppTitle from './AppTitle'
 
 
 
@@ -18,7 +19,7 @@ class SignIn extends Component {
       <div className='main-container inner-shadow'>
         <div className='header-container'>
           <p>Welcome to the</p>
-          <p className='bold-purple'>Would You Rather App!</p>
+            <AppTitle />
           <p>Please sign in to continue</p>
         </div>
         <img src={logo} className="App-logo" alt="logo" />
