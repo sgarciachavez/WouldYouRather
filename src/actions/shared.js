@@ -3,7 +3,7 @@ import { receiveUsers } from '../actions/users'
 import { receiveQuestions } from '../actions/questions'
 import { setAuthedUser } from '../actions/authedUser'
 
-const AUTHED_ID = 'johndoe'
+//const AUTHED_ID = 'johndoe'
 
 export function handleGetUsers(){
   return (dispatch) => {
@@ -15,11 +15,11 @@ export function handleGetUsers(){
 }
 //TODO:  Need to dynamically set the AUTHED_ID
 // Pass as argument to handleAuthedUser
-export function handleAuthedUser(){
+export function handleAuthedUser(authedId){
   return (dispatch) => {
     return getQuestions()
       .then(({ questions }) => {
-        dispatch(setAuthedUser(AUTHED_ID))
+        dispatch(setAuthedUser(authedId))
         dispatch(receiveQuestions(questions))
       })
   }

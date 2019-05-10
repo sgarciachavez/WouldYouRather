@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { handleGetUsers } from '../actions/shared'
 import SignIn from './SignIn'
 
+
 class App extends Component {
   componentDidMount(){
     this.props.dispatch(handleGetUsers())
@@ -13,7 +14,6 @@ class App extends Component {
         {this.props.loggedin
           ? "User logged in! "
           : <SignIn />}
-
       </div>
     );
   }
