@@ -1,17 +1,32 @@
-import React, { Component } from 'react';
-import Menu from './Menu'
-import AppTitle from './AppTitle'
+import React, { Component } from 'react'
+import Nav from 'react-bootstrap/Nav'
+import QuestionSet from './QuestionSet'
 
 
-
-class Home extends Component {
+class Home extends Component{
+  state = {
+    type: "home"
+  }
+  handleSelect = (key) =>{
+    this.setState(() => ({
+      type: key
+    }))
+  }
   render(){
+
     return (
-      <div className='main-container inner-shadow'>
-        <div className='header-container'>
-          <AppTitle />
-        </div>
-        <Menu />
+      <div className="pills-container">
+        <Nav variant="pills" defaultActiveKey="unanswered"
+          className="justify-content-center"
+          onSelect={this.handleSelect}>
+          <Nav.Item>
+            <Nav.Link eventKey="unanswered">Unanswered Questions</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="answered">Answered Questions</Nav.Link>
+          </Nav.Item>
+        </Nav>
+        <QuestionSet type={this.state.type} />
       </div>
     )
   }

@@ -5,12 +5,11 @@ import { DropdownButton, Dropdown } from 'react-bootstrap'
 import { handleAuthedUser } from '../actions/shared'
 import AppTitle from './AppTitle'
 
-
-
 class SignIn extends Component {
 
   handleSelected = (key, event) => {
     this.props.dispatch(handleAuthedUser(key))
+    this.props.history.push(`/home`)
   }
 
   render(){
@@ -29,9 +28,9 @@ class SignIn extends Component {
             <Dropdown.Item onSelect={this.handleSelected} eventKey={id} key={id}>
               <img
                 className='select-avatar'
-                src={this.props.allusers[id].avatarURL}
-                alt={this.props.allusers[id].name} />
-              {this.props.allusers[id].name}
+                src={this.props.users[id].avatarURL}
+                alt={this.props.users[id].name} />
+              {this.props.users[id].name}
             </Dropdown.Item>
           ))}
 
@@ -45,7 +44,7 @@ function mapStateToProps({ users }){
 
   return{
     userIds: Object.keys(users),
-    allusers: users
+    users: users
   }
 }
 
