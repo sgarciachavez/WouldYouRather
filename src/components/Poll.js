@@ -2,13 +2,32 @@ import React, { Component } from 'react'
 import Button from 'react-bootstrap/Button'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { handleSaveAnswer } from '../actions/shared'
 
 class Poll extends Component{
-  handleOnClick = () => {
-    alert(this.props.question.id)
+  state = {
+    option: null
   }
+
+  handleOnSubmit = () => {
+      const { dispatch, question, authedUser} = this.props
+
+      dispatch(handleSaveAnswer({
+        authedUser,
+        qid: question.id,
+        answer: this.state.option
+      }))
+  }
+
+  handleOnChange = (e) => {
+    const val = e.target.value
+    this.setState(() => ({
+      option: val
+    }))
+  }
+
 render(){
-  const { question, authedUser,author } = this.props
+  const { question, author } = this.props
 
 console.log("Poll", this.props)
     return (
@@ -22,16 +41,24 @@ console.log("Poll", this.props)
            </div>
            <div className="question-main">
              <p className='bold-purple'>Would you rather...</p>
-             <p> {question.optionOne.text}</p>
-             <p> {question.optionTwo.text}</p>
+             <form >
+             <label className="radio-container">{question.optionOne.text}
+               <input type="radio" name="poll" value="optionOne" onChange={this.handleOnChange}/>
+               <span className="checkmark"></span>
+             </label>
+
+             <label className="radio-container">{question.optionTwo.text}
+               <input type="radio" name="poll" value="optionTwo" onChange={this.handleOnChange}/>
+               <span className="checkmark"></span>
+             </label>
+             </form>
            </div>
            <div className="question-button">
-            <Link to={'/home'}>
-              <Button type="button" variant="primary" size="sm" block>
+            <Link to={'/home'} onClick={this.handleOnSubmit}>
+              <Button type="button" variant="primary" size="sm" block disabled={this.state.option ? false : true}>
                 Submit
               </Button>
             </Link>
-
            </div>
         </div>
     )

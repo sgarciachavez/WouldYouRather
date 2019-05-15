@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import QuestionItem from './QuestionItem'
+import NoQuestionsMessage from './NoQuestionsMessage'
 
 class QuestionSet extends Component{
   render(){
+    console.log("QuestionSet", this.props)
+
     const {users, questions, keys, type } = this.props
+
     return (
       <div>
+        {keys.length === 0 && <NoQuestionsMessage type={type}/> }
         {keys.map((k) => (
           <QuestionItem key={k} question={questions[k]} users={users} type={type}/>
         ))}
@@ -15,12 +20,13 @@ class QuestionSet extends Component{
   }
 }
 
+
 function mapStateToProps({authedUser, users, questions},{type}){
-  const answers = users[authedUser].answers //return an Object
-  const answeredKeys = Object.keys(answers)
+
+  const answeredKeys = Object.keys(users[authedUser].answers)
   const questionKeys = Object.keys(questions)
 
-  let unansweredKeys = questionKeys.filter((k) => !answeredKeys.includes(k))
+  const unansweredKeys = questionKeys.filter((k) => !answeredKeys.includes(k))
 
 
   return{

@@ -9,9 +9,7 @@ import Poll from './Poll'
 import Results from './Results'
 
 class Dashboard extends Component {
-  state = {
-    tab: "home"
-  }
+  
   render(){
     return (
       <Router>

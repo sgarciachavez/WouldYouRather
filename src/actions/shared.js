@@ -1,9 +1,8 @@
-import { getUsers, getQuestions } from '../utils/api'
-import { receiveUsers } from '../actions/users'
-import { receiveQuestions } from '../actions/questions'
+import { getUsers, getQuestions, saveQuestionAnswer } from '../utils/api'
+import { receiveUsers, saveUserAnswer } from '../actions/users'
+import { receiveQuestions, saveAnswer } from '../actions/questions'
 import { setAuthedUser } from '../actions/authedUser'
 
-//const AUTHED_ID = 'johndoe'
 
 export function handleGetUsers(){
   return (dispatch) => {
@@ -13,8 +12,7 @@ export function handleGetUsers(){
       })
   }
 }
-//TODO:  Need to dynamically set the AUTHED_ID
-// Pass as argument to handleAuthedUser
+
 export function handleAuthedUser(authedId){
   return (dispatch) => {
     return getQuestions()
@@ -22,5 +20,19 @@ export function handleAuthedUser(authedId){
         dispatch(setAuthedUser(authedId))
         dispatch(receiveQuestions(questions))
       })
+  }
+}
+
+export function handleSaveAnswer(info){
+  return (dispatch) => {
+    dispatch(saveAnswer(info)) //update to questions object in store
+    dispatch(saveUserAnswer(info)) //update to users object in store
+
+    return saveQuestionAnswer(info)
+      .catch((e)=>{
+        console.warn('Error in handleSaveAnswer: ' , e)
+        dispatch(saveAnswer(info))
+        alert('There was an error saving your answer.  Try again')
+    })
   }
 }

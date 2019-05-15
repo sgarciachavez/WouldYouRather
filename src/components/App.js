@@ -5,7 +5,6 @@ import SignIn from './SignIn'
 import Dashboard from './Dashboard'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-
 class App extends Component {
   componentDidMount(){
     this.props.dispatch(handleGetUsers())
@@ -18,11 +17,10 @@ class App extends Component {
           {this.props.loggedin
             ? <Dashboard />
             : <Router>
-                <Route exact path='/' component={SignIn} />
+                <Route path='/' component={SignIn} />
               </Router>}
         </div>
-
-    );
+    )
   }
 }
 

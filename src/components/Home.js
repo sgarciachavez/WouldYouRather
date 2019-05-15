@@ -5,7 +5,7 @@ import QuestionSet from './QuestionSet'
 
 class Home extends Component{
   state = {
-    type: "home"
+    type: "unanswered"
   }
   handleSelect = (key) =>{
     this.setState(() => ({

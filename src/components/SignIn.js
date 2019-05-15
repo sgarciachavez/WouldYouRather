@@ -13,7 +13,7 @@ class SignIn extends Component {
   }
 
   render(){
-    //console.log(this.props)
+  
     return (
       <div className='main-container inner-shadow'>
         <div className='header-container'>
@@ -33,7 +33,6 @@ class SignIn extends Component {
               {this.props.users[id].name}
             </Dropdown.Item>
           ))}
-
         </DropdownButton>
       </div>
     )
