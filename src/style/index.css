@@ -34,6 +34,34 @@ code {
   padding-bottom: 3px;
 }
 
+.result-item-select{
+  color: green;
+  font-weight: bold;
+  background-color: #E5F9D8;
+  border-radius: 15px;
+  padding: 25px;
+  margin: 10px;
+  border: 2px solid green;
+  position: relative;
+}
+.topright {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 18px;
+  background-color: #FFD700;
+  color: white;
+  border-radius:  50px 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.result-item{
+  background-color: #F0F8FF;
+  border-radius: 15px;
+  padding: 25px;
+  margin: 10px;
+  border: 1px solid #61dafb;
+}
 .bold-purple{
   color: #007bff;
   font-weight: bold;
@@ -103,6 +131,17 @@ code {
     'header header header header header'
     'avatar main main main main'
     'avatar button button button button';
+  grid-gap: 1px;
+  background-color: #61dafb;
+  padding: 1px;
+  margin: 10px;
+}
+
+.results-item-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header'
+    'avatar main main main main';
   grid-gap: 1px;
   background-color: #61dafb;
   padding: 1px;
