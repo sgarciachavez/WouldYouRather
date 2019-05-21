@@ -3,16 +3,17 @@ import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom'
 
 class QuestionItem extends Component{
-  handleOnClick = () => {
-    alert(this.props.question.id)
-    //forward this id to Poll OR Results!
-  }
+
   render(){
     const { question, users, type } = this.props
+    const d = new Date(question.timestamp);
 
     return (
       <div className="question-item-container">
-        <div className="question-header">{users[question.author].name} <span className='bold-purple'>asked...</span></div>
+        <div className="question-header">
+          {users[question.author].name} <span className='bold-purple'>asked on: </span>
+          {d.toDateString()}
+        </div>
         <div className="question-avatar">
         <img
           className='avatar'
@@ -21,7 +22,7 @@ class QuestionItem extends Component{
         </div>
         <div className="question-main">
           <p className='bold-purple'>Would you rather</p>
-          ...{question.optionOne.text.substring(0, 10)}... <span className='bold-purple'>or</span> ... ?
+          ...{question.optionOne.text}... <span className='bold-purple'>or</span> ... ?
         </div>
         <div className="question-button">
         {type === "answered"
@@ -35,7 +36,6 @@ class QuestionItem extends Component{
               View Poll
             </Button>
           </Link>}
-
         </div>
       </div>
     )

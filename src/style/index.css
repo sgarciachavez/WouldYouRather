@@ -15,7 +15,7 @@ code {
 .main-container{
   margin: auto;
   text-align: center;
-  width: 90%;
+  max-width: 800px;
   border: 3px solid #61dafb;
   margin-top: 10px;
   padding: 5px;
@@ -49,7 +49,7 @@ code {
   top: -10px;
   right: -10px;
   font-size: 18px;
-  background-color: #FFD700;
+  background-color: #feb236;
   color: white;
   border-radius:  50px 15px;
   padding-left: 10px;
@@ -67,7 +67,7 @@ code {
   font-weight: bold;
 }
 .select-avatar{
-  width: 45px;
+  width: 2.2em;
   padding-right: 5px;
   margin-right: 10px;
 }
@@ -108,8 +108,55 @@ code {
   padding-bottom: 20%
 
 }
+.score-container {
+  grid-area: score;
+  background-color: white;
+}
+.score{
+  color: #007bff;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10px;
+  width: 70%;
+  height: 90%;
+  display: grid;
+  grid-template-areas:
+    'header'
+    'score-circle';
+    border: 1px solid #61dafb;
+  text-align: center;
+}
+.alignleft {
+	float: left;
+}
+.alignright {
+	float: right;
+}
+.score-header {
+  grid-area: header;
+  background-color: #F0F8FF;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding-top: 15px;
+  height: 90%;
+}
+
+.circle {
+  grid-area: score-circle;
+  height: 75px;
+  width: 75px;
+  background-color: #007bff;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  font-size: 30px;
+  padding-top: 15px;
+}
 .avatar{
-  width: 100px;
+  width: 5em;
   padding: 5px;
 }
 .question-main {
@@ -146,6 +193,36 @@ code {
   background-color: #61dafb;
   padding: 1px;
   margin: 10px;
+}
+
+.score-item-container {
+  display: grid;
+  grid-template-areas:
+    'avatar header header score'
+    'avatar main main score'
+    'avatar main main score';
+  grid-gap: 1px;
+  background-color: #007bff;
+  padding: 1px;
+  margin: auto;
+  margin-bottom: 15px;
+  width: 80%;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.newquestion-container {
+  display: grid;
+  grid-template-areas:
+    'header'
+    'main'
+    'button';
+  grid-gap: 1px;
+  background-color: #61dafb;
+  padding: 1px;
+  width: 65%;
+  margin: auto;
+  text-align: center;
 }
 
 .active {
@@ -233,3 +310,74 @@ code {
   background: white;
 }
 /*=========RADIO BUTTON Syle=========== */
+hr {
+    border: none;
+    border-top: 3px double #ccc;
+    color: #007bff;
+    overflow: visible;
+    text-align: center;
+    height: 5px;
+    width: 65%;
+}
+
+hr:after {
+    background: #fff;
+    content: 'OR';
+    padding: 0 4px;
+    position: relative;
+    top: -13px;
+}
+.not-allowed {
+  cursor: not-allowed;
+}
+/*=========== Nav Bar====================*/
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #007bff;
+}
+
+li {
+  float: left;
+  height: 2.8em;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #4da3ff;
+  text-decoration: none;
+}
+.float-right{
+  float: right;
+}
+.active {
+  background-color: #4da3ff;
+  height: 2.8em;
+}
+.nav-bar{
+  padding-bottom: 20px;
+}
+.user{
+  display: block;
+  text-align: center;
+  padding: 10px 16px;
+  background-color: #007bff;
+  margin-left: .5em;
+  color: white;
+  font-weight: bold;
+}
+
+.user-avatar{
+  width: 2.2em;
+  padding: 7px;
+  margin-left: .5em;
+}
