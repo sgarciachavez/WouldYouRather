@@ -14,9 +14,8 @@ class Results extends Component{
     const optionOneVotes = question.optionOne.votes.length
     const optionTwoVotes = question.optionTwo.votes.length
     const totalVotes = optionOneVotes + optionTwoVotes
-    const stat1 = optionOneVotes/totalVotes * 100
-    const stat2 = optionTwoVotes/totalVotes * 100
-
+    const stat1 = Math.floor(optionOneVotes/totalVotes * 100)
+    const stat2 = Math.floor(optionTwoVotes/totalVotes * 100)
 
     return (
       <div className="results-item-container">
@@ -46,7 +45,6 @@ class Results extends Component{
            </div>
          </div>
       </div>
-
     )
   }
 }

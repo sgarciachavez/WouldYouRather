@@ -29,7 +29,6 @@ class Poll extends Component{
 render(){
   const { question, author } = this.props
 
-console.log("Poll", this.props)
     return (
         <div className="question-item-container">
            <div className="question-header">{author.name}<span className='bold-purple'> asked...</span></div>
@@ -55,7 +54,10 @@ console.log("Poll", this.props)
            </div>
            <div className="question-button">
             <Link to={'/home'} onClick={this.handleOnSubmit}>
-              <Button type="button" variant="primary" size="sm" block disabled={this.state.option ? false : true}>
+              <Button
+                type="button" variant="primary" size="sm" block
+                disabled={this.state.option ? false : true}
+                className='not-allowed'>
                 Submit
               </Button>
             </Link>

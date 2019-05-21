@@ -11,15 +11,18 @@ class App extends Component {
   }
 
   render(){
-    console.log("App: ", this.props)
+    
     return (
+      <Router>
+
         <div>
           {this.props.loggedin
             ? <Dashboard />
-            : <Router>
-                <Route path='/' component={SignIn} />
-              </Router>}
+            : <Route path='/' component={SignIn} />
+          }
         </div>
+
+        </Router>
     )
   }
 }
