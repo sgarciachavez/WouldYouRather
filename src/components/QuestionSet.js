@@ -11,7 +11,7 @@ class QuestionSet extends Component{
       <div>
         {keys.length === 0 && <NoQuestionsMessage type={type}/> }
         {keys.map((k) => (
-          <QuestionItem key={k} question={questions[k]} users={users} type={type}/>
+           <QuestionItem key={k} question={questions[k]} users={users} type={type}/>
         ))}
         </div>
     )

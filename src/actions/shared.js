@@ -2,7 +2,7 @@ import { getUsers, getQuestions, saveQuestionAnswer, saveQuestion } from '../uti
 import { receiveUsers, saveUserAnswer, saveNewQuestion} from '../actions/users'
 import { receiveQuestions, saveAnswer, addQuestion } from '../actions/questions'
 import { setAuthedUser, logoutUser  } from '../actions/authedUser'
-
+import { showLoading, hideLoading } from 'react-redux-loading'
 
 export function handleGetUsers(){
   return (dispatch) => {
@@ -46,11 +46,12 @@ export function handleSaveAnswer(info){
 
 export function handleAddQuestion(info){ //question = { optionOneText, optionTwoText, author }
   return(dispatch) => {
-
+    dispatch(showLoading())
     return saveQuestion(info)
       .then((question)=>{
         dispatch(addQuestion(question))
         dispatch(saveNewQuestion(question))
+        dispatch(hideLoading())
       })
       .catch((e)=>{
         console.warn('Error in handleAddQuestion', e)

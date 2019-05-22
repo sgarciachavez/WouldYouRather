@@ -14,13 +14,13 @@ export function saveUserAnswer({authedUser, qid, answer}){
     type: SAVE_USER_ANSWER,
     authedUser,
     qid,
-    answer
+    answer,
   }
 }
 
 export function saveNewQuestion(question){
   return{
     type: NEW_QUESTION,
-    question
+    question,
   }
 }

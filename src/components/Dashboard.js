@@ -7,7 +7,7 @@ import LeaderBoard from './LeaderBoard'
 import Nav from './Nav'
 import Poll from './Poll'
 import Results from './Results'
-
+import { LoadingBar } from 'react-redux-loading'
 
 class Dashboard extends Component {
 
@@ -16,6 +16,7 @@ class Dashboard extends Component {
       <Router>
         <Fragment>
           <div className='main-container inner-shadow'>
+          <LoadingBar />
             <div className='header-container'>
               <AppTitle />
             </div>

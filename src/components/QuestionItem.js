@@ -8,6 +8,10 @@ class QuestionItem extends Component{
     const { question, users, type } = this.props
     const d = new Date(question.timestamp);
 
+    if(question === null){
+      return null
+    }
+    
     return (
       <div className="question-item-container">
         <div className="question-header">
