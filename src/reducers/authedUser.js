@@ -1,11 +1,20 @@
-import { SET_AUTHED_USER, LOGOUT } from '../actions/authedUser'
+import { SET_AUTHED_USER, LOGOUT, SET_PATH } from '../actions/authedUser'
 
-export default function authedUser(state = null, action){
+export  function authedUser(state = null, action){
   switch(action.type){
     case SET_AUTHED_USER :
       return action.id
     case LOGOUT :
         return state = null;
+    default :
+      return state
+  }
+}
+
+export  function userPath(state = null, action){
+  switch(action.type){
+    case SET_PATH :
+      return action.path
     default :
       return state
   }

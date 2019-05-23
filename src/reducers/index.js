@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import authedUser from './authedUser'
+import {authedUser, userPath} from './authedUser'
 import users from './users'
 import questions from './questions'
 import avatars from './avatars'
@@ -10,5 +10,6 @@ export default combineReducers({
   users,
   questions,
   avatars,
+  userPath,
   loadingBar: loadingBarReducer,
 })

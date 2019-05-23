@@ -1,7 +1,7 @@
 import { getUsers, getQuestions, saveQuestionAnswer, saveQuestion, getAvatars, saveNewUser } from '../utils/api'
 import { receiveUsers, saveUserAnswer, saveNewQuestion, addNewUser} from '../actions/users'
 import { receiveQuestions, saveAnswer, addQuestion } from '../actions/questions'
-import { setAuthedUser, logoutUser  } from '../actions/authedUser'
+import { setAuthedUser, logoutUser, setUserPath  } from '../actions/authedUser'
 import { showLoading, hideLoading } from 'react-redux-loading'
 import { receiveAvatars } from '../actions/avatars'
 
@@ -35,9 +35,16 @@ export function handleAuthedUser(authedId){
   }
 }
 
+export function handleSetPath(path){
+  return (dispatch)=>{
+    dispatch(setUserPath(path))
+  }
+}
+
 export function handleLogout(){
   return (dispatch) => {
     dispatch(logoutUser())
+    dispatch(setUserPath(null))
   }
 }
 

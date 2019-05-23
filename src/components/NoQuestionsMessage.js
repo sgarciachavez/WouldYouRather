@@ -12,7 +12,7 @@ class NoQuestionsMessage extends Component{
         :
         <p className='bold-purple'>
           <br/>You have not answered any questions.
-          <br/>Go to the "Unanswered" tab
+          <br/>Go to the "Unanswered" tab and answer some questions!
         </p>
       }</div>
     )

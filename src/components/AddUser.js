@@ -29,14 +29,12 @@ class AddUser extends Component{
           ()=> this.isDisabled() )
           document.getElementById("userid").value='';
       }else{
-        //e.preventDefault()
         const user = this.getUserObject()
-        console.log("UserID: ", user.id)
+
         this.props.dispatch(handleNewUser(user))
         this.props.dispatch(handleGetUsers())
         this.props.dispatch(handleAuthedUser(user.id))
       }
-
   }
   getUserObject(){
     const { firstname, lastname,userid,avatarurl } = this.state
@@ -129,7 +127,7 @@ class AddUser extends Component{
               </div>))}
             </div>
             <div className='new-user-btn'>
-            <Link to={'/home'} onClick={this.handleSubmit} className='not-allowed'>
+            <Link to={'/'} onClick={this.handleSubmit} className='not-allowed'>
               <Button
                 className='not-allowed'
                 variant="primary" type="button" block

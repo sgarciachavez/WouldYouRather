@@ -3,17 +3,18 @@ import logo from '../images/logo.svg'
 import { connect } from 'react-redux'
 import { DropdownButton, Dropdown } from 'react-bootstrap'
 import { handleAuthedUser } from '../actions/shared'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 class SignIn extends Component {
 
   handleSelected = (key, event) => {
     this.props.dispatch(handleAuthedUser(key))
-    this.props.history.push(`/home`)
+    const path = this.props.userpath
+    return <Redirect to={path} />
   }
 
   render(){
-
+    
     return (
         <div>
           <p>Please Sign in</p>
@@ -37,11 +38,12 @@ class SignIn extends Component {
   }
 }
 
-function mapStateToProps({ users }){
+function mapStateToProps({ users, userPath }){
 
   return{
     userIds: Object.keys(users),
-    users: users
+    users: users,
+    userpath: userPath
   }
 }
 
