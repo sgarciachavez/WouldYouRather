@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-class User extends Component{
+class HelloUser extends Component{
   render(){
     const {authedUser, users} = this.props
+    const name = users[authedUser].name
+    const firstname = name.substring(0, name.indexOf(' '))
     return (
         <div className='user'>
-          Hello, {users[authedUser].name}
+          Hello, {firstname}
           <img
             className='user-avatar'
             src={users[authedUser].avatarURL}
@@ -23,4 +25,4 @@ function mapStateToProps({authedUser, users}){
   }
 }
 
-export default connect(mapStateToProps)(User)
+export default connect(mapStateToProps)(HelloUser)

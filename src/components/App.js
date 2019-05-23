@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { handleGetUsers } from '../actions/shared'
-import SignIn from './SignIn'
 import Dashboard from './Dashboard'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route  } from 'react-router-dom'
+import Users from './Users'
 
 
 class App extends Component {
@@ -18,7 +18,7 @@ class App extends Component {
         <div>
           {this.props.loggedin
             ? <Dashboard />
-            : <Route path='/' component={SignIn} />
+            : <Route path='/' component={Users} />
           }
         </div>
       </Router>

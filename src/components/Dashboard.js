@@ -15,22 +15,23 @@ class Dashboard extends Component {
     return (
       <Router>
         <Fragment>
+        <LoadingBar />
           <div className='main-container inner-shadow'>
-          <LoadingBar />
             <div className='header-container'>
               <AppTitle />
             </div>
+
             <Nav/>
 
-              <Route path='/home' exact component={Home} />
-              <Route path='/add' exact component={NewQuestion} />
-              <Route path='/board' exact component={LeaderBoard} />
-              <Route path='/questions/:question_id' component = {Poll} />
-              <Route path='/results/:question_id' component = {Results} />
+            <Route path='/home' exact component={Home} />
+            <Route path='/add' exact component={NewQuestion} />
+            <Route path='/leaderboard' exact component={LeaderBoard} />
+            <Route path='/questions/:question_id' component = {Poll} />
+            <Route path='/results/:question_id' component = {Results} />
 
-            </div>
-          </Fragment>
-        </Router>
+          </div>
+        </Fragment>
+      </Router>
     )
   }
 }

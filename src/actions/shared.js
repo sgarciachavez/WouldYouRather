@@ -1,8 +1,9 @@
-import { getUsers, getQuestions, saveQuestionAnswer, saveQuestion } from '../utils/api'
-import { receiveUsers, saveUserAnswer, saveNewQuestion} from '../actions/users'
+import { getUsers, getQuestions, saveQuestionAnswer, saveQuestion, getAvatars, saveNewUser } from '../utils/api'
+import { receiveUsers, saveUserAnswer, saveNewQuestion, addNewUser} from '../actions/users'
 import { receiveQuestions, saveAnswer, addQuestion } from '../actions/questions'
 import { setAuthedUser, logoutUser  } from '../actions/authedUser'
 import { showLoading, hideLoading } from 'react-redux-loading'
+import { receiveAvatars } from '../actions/avatars'
 
 export function handleGetUsers(){
   return (dispatch) => {
@@ -13,12 +14,23 @@ export function handleGetUsers(){
   }
 }
 
+export function handleGetAvatars(){
+  return (dispatch) => {
+    return getAvatars()
+      .then(({ avatars }) => {
+        dispatch(receiveAvatars(avatars))
+      })
+  }
+}
+
 export function handleAuthedUser(authedId){
   return (dispatch) => {
+    dispatch(showLoading())
     return getQuestions()
       .then(({ questions }) => {
         dispatch(setAuthedUser(authedId))
         dispatch(receiveQuestions(questions))
+        dispatch(hideLoading())
       })
   }
 }
@@ -59,5 +71,18 @@ export function handleAddQuestion(info){ //question = { optionOneText, optionTwo
         dispatch(saveNewQuestion(info))
         alert('There was an error saving your question. Try again')
       })
+  }
+}
+
+export function handleNewUser(user){
+  return (dispatch) => {
+    dispatch(addNewUser(user)) //update store 1st
+
+    return saveNewUser(user)
+    .catch((e)=>{
+      console.warn("Error in adding new user")
+      dispatch(addNewUser(user))
+      alert('There was an error saving the new user.  Try again')
+    })
   }
 }

@@ -3,7 +3,10 @@ import {
   _getQuestions,
   _saveQuestion,
   _saveQuestionAnswer,
+  _saveNewUser,
 } from './_DATA.js'
+
+import { _getAvatars } from './_AVATAR_DATA.js'
 
 export function getInitialData () {
   return Promise.all([
@@ -31,10 +34,23 @@ export function getQuestions () {
   }))
 }
 
+export function getAvatars(){
+  return Promise.all([
+    _getAvatars(),
+  ]).then(([avatars]) => ({
+    avatars,
+  }))
+}
+
 export function saveQuestion (question) {
   return _saveQuestion(question)
 }
 
 export function saveQuestionAnswer (answer) {
   return _saveQuestionAnswer(answer)
+}
+
+export function saveNewUser(user){
+  console.log("HERE!!", user)
+  return _saveNewUser(user)
 }

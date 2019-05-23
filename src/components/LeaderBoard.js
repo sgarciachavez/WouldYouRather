@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 class LeaderBoard extends Component{
   render(){
     const { users } = this.props
+
     const sortedUsers = Object.entries(users).sort((a, b) => (
       (Object.keys(b[1].answers).length + Object.keys(b[1].questions).length)
         - (Object.keys(a[1].answers).length + Object.keys(a[1].questions).length)

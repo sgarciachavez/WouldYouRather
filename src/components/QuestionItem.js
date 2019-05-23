@@ -11,7 +11,7 @@ class QuestionItem extends Component{
     if(question === null){
       return null
     }
-    
+
     return (
       <div className="question-item-container">
         <div className="question-header">
@@ -31,12 +31,12 @@ class QuestionItem extends Component{
         <div className="question-button">
         {type === "answered"
         ? <Link to={`/results/${question.id}`}>
-            <Button type="button" variant="outline-primary" size="sm" block >
+            <Button type="button" variant="primary" size="sm" block >
               View Poll
             </Button>
           </Link>
         : <Link to={`/questions/${question.id}`}>
-            <Button type="button" variant="outline-primary" size="sm" block >
+            <Button type="button" size="sm" variant="primary" block>
               View Poll
             </Button>
           </Link>}
