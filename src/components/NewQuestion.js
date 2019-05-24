@@ -3,16 +3,15 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { handleAddQuestion } from '../actions/shared'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 class NewQuestion extends Component{
   state = {
-    disabled: true,
     optionone: '',
     optiontwo: ''
   }
-  handleSubmit = () => {
-    //question = { optionOneText, optionTwoText, author }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
     const { dispatch, authedUser} = this.props
     const { optionone, optiontwo } = this.state
 
@@ -23,7 +22,9 @@ class NewQuestion extends Component{
     }
 
     dispatch(handleAddQuestion(obj))
+    this.props.history.push('/home');
   }
+
   handleChange = (e) => {
     const id = e.target.id
     const value = e.target.value
@@ -31,16 +32,6 @@ class NewQuestion extends Component{
     this.setState(() => ({
       [id]: value
     }))
-
-    if(this.state.optionone.length > 5 && this.state.optiontwo.length > 5){
-      this.setState(() => ({
-        disabled: false
-      }))
-    }else{
-      this.setState(() => ({
-        disabled: true
-      }))
-    }
   }
 
   render(){
@@ -49,27 +40,31 @@ class NewQuestion extends Component{
         <div className="question-header">
           <h3 className='bold-purple'>Create New Question</h3>
         </div>
-
+        <Form onSubmit={this.handleSubmit}>
         <div className="question-main">
           <p className='bold-purple'>Would you rather...</p>
             <Form.Group>
-              <Form.Control id="optionone" type="input" placeholder="Enter option one" onChange={this.handleChange}/>
+              <Form.Control required
+                id="optionone" type="input"
+                placeholder="Enter option one"
+                onChange={this.handleChange}/>
             </Form.Group>
             <hr />
             <Form.Group>
-              <Form.Control id="optiontwo" type="input" placeholder="Enter option two" onChange={this.handleChange}/>
+              <Form.Control required
+              id="optiontwo" type="input"
+              placeholder="Enter option two"
+              onChange={this.handleChange}/>
             </Form.Group>
         </div>
         <div className='question-button'>
-        <Link to={'/home'} onClick={this.handleSubmit}>
           <Button
             className='not-allowed'
-            variant="primary" type="button"
-            disabled={this.state.disabled}>
+            variant="primary" type="submit">
             Submit
           </Button>
-        </Link>
           </div>
+        </Form>
       </div>
     )
   }
