@@ -1,5 +1,4 @@
-import { getUsers, getQuestions, saveQuestionAnswer,
-    saveQuestion, getAvatars, saveNewUser, getInitialData } from '../utils/api'
+import { getUsers, saveQuestionAnswer,saveQuestion, getAvatars, saveNewUser, getInitialData } from '../utils/api'
 import { receiveUsers, saveUserAnswer, saveNewQuestion, addNewUser} from '../actions/users'
 import { receiveQuestions, saveAnswer, addQuestion } from '../actions/questions'
 import { setAuthedUser, logoutUser, setUserPath  } from '../actions/authedUser'
