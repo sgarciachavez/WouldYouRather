@@ -29,6 +29,10 @@ class Poll extends Component{
 render(){
   const { question, author } = this.props
 
+    if(question === null || author === null){
+      return null
+    }
+
     return (
         <div className="question-item-container">
            <div className="question-header">{author.name}<span className='bold-purple'> asked...</span></div>
@@ -67,11 +71,11 @@ render(){
   }
 }
 
-function mapStateToProps({authedUser, users, questions},props){
+function mapStateToProps({authedUser, users, questions, userPath},props){
   const { question_id } = props.match.params
   const question = questions ? questions[question_id] : null
   const author = users && question ? users[question.author] : null
-
+  
   return{
     question: question,
     authedUser: authedUser,

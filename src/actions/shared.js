@@ -1,9 +1,22 @@
-import { getUsers, getQuestions, saveQuestionAnswer, saveQuestion, getAvatars, saveNewUser } from '../utils/api'
+import { getUsers, getQuestions, saveQuestionAnswer,
+    saveQuestion, getAvatars, saveNewUser, getInitialData } from '../utils/api'
 import { receiveUsers, saveUserAnswer, saveNewQuestion, addNewUser} from '../actions/users'
 import { receiveQuestions, saveAnswer, addQuestion } from '../actions/questions'
 import { setAuthedUser, logoutUser, setUserPath  } from '../actions/authedUser'
 import { showLoading, hideLoading } from 'react-redux-loading'
 import { receiveAvatars } from '../actions/avatars'
+
+export function handleInitialData(){
+  return (dispatch) => {
+    dispatch(showLoading())
+    return getInitialData()
+      .then(({users, questions}) => {
+        dispatch(receiveUsers(users))
+        dispatch(receiveQuestions(questions))
+        dispatch(hideLoading())
+      })
+  }
+}
 
 export function handleGetUsers(){
   return (dispatch) => {
@@ -25,13 +38,7 @@ export function handleGetAvatars(){
 
 export function handleAuthedUser(authedId){
   return (dispatch) => {
-    dispatch(showLoading())
-    return getQuestions()
-      .then(({ questions }) => {
-        dispatch(setAuthedUser(authedId))
-        dispatch(receiveQuestions(questions))
-        dispatch(hideLoading())
-      })
+    dispatch(setAuthedUser(authedId))
   }
 }
 

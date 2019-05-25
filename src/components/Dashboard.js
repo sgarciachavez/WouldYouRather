@@ -9,22 +9,56 @@ import Poll from './Poll'
 import Results from './Results'
 import { LoadingBar } from 'react-redux-loading'
 import { connect } from 'react-redux'
+import ErrorPage from './ErrorPage'
 
 class Dashboard extends Component {
-  isvalid = () => {
-    const path = this.props.userpath
-    const validurls = [
-      '/home',
-      '/add',
-      '/leaderboard',
-      '/questions/:question_id',
-      '/results/:question_id']
 
-      return validurls.includes(path)
+  redirect = () => {
+    let path = '/home'
+    const {userpath, questions, authedUser, users} = this.props
+    const user = users ? users[authedUser] : null
+
+    if(userpath){
+      const validurls = [
+        '/home',
+        '/add',
+        '/leaderboard']
+
+        if(validurls.includes(userpath)){
+          path = userpath
+        }else{
+          path = '404_page_not_found'
+
+          const inxQ = userpath.search("questions")
+          if(inxQ > -1){
+            const qID = userpath.substr(inxQ + 10).trim()  //is the qID valid??
+            const question = questions ? questions[qID] : null
+
+            if(question){
+              const hasAnswered = user.answers.hasOwnProperty(qID)
+              if(!hasAnswered){
+                path = userpath
+              }
+            }
+          }
+
+          const inxR = userpath.search("results");
+          if(inxR > -1){
+            const qID = userpath.substr(inxR + 8).trim()
+            const question = questions ? questions[qID] : null
+
+            if(question){
+              const hasAnswered = user.answers.hasOwnProperty(qID)
+              if(hasAnswered){
+                path = userpath
+              }
+            }
+          }
+        }
+    }
+    return path
   }
   render(){
-    const userpath = this.props.userpath
-    const valid = this.isvalid()
 
     return (
       <Router>
@@ -42,10 +76,8 @@ class Dashboard extends Component {
               <Route path='/leaderboard' exact component={LeaderBoard} />
               <Route path='/questions/:question_id' component = {Poll} />
               <Route path='/results/:question_id' component = {Results} />
-
-              {userpath && valid
-                ? <Redirect to={userpath} />
-                : <Redirect to='/home' />}
+              <Route path='/404_page_not_found' component = {ErrorPage} />
+              <Redirect to={this.redirect()} />
 
             </Switch>
           </div>
@@ -55,9 +87,12 @@ class Dashboard extends Component {
   }
 }
 
-function mapStateToProps({userPath}){
+function mapStateToProps({userPath, questions, authedUser, users}){
   return{
     userpath: userPath,
+    questions: questions,
+    authedUser: authedUser,
+    users: users
   }
 }
 export default connect(mapStateToProps)(Dashboard)

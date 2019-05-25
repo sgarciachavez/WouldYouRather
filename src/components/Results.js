@@ -18,6 +18,7 @@ class Results extends Component{
     const stat2 = Math.floor(optionTwoVotes/totalVotes * 100)
 
     return (
+      <div>{!question ? null :
       <div className="results-item-container">
          <div className="question-header">
           <span className='bold-purple'>Asked by  </span>
@@ -45,6 +46,7 @@ class Results extends Component{
            </div>
          </div>
       </div>
+      }</div>
     )
   }
 }

@@ -5,7 +5,7 @@ import SignIn from './SignIn'
 import AddUser from './AddUser'
 import { LoadingBar } from 'react-redux-loading'
 import { connect } from 'react-redux'
-import ErrorPage from './ErrorPage'
+import MustSignIn from './MustSignIn'
 
 class Users extends Component{
 
@@ -24,7 +24,7 @@ class Users extends Component{
           <Switch>
             <Route path='/' exact component={SignIn} />
             <Route path='/adduser' exact component={AddUser} />
-            <Route path='/' component={ErrorPage} />
+            <Route path='/' component={MustSignIn} />
           </Switch>
 
         </div>

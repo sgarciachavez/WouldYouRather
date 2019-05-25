@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { handleGetUsers } from '../actions/shared'
+import { handleInitialData } from '../actions/shared'
 import Dashboard from './Dashboard'
 import { BrowserRouter as Router, Route  } from 'react-router-dom'
 import Users from './Users'
@@ -8,7 +8,7 @@ import Users from './Users'
 
 class App extends Component {
   componentDidMount(){
-    this.props.dispatch(handleGetUsers())
+    this.props.dispatch(handleInitialData())
   }
 
   render(){

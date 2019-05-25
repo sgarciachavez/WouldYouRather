@@ -9,12 +9,12 @@ class SignIn extends Component {
 
   handleSelected = (key, event) => {
     this.props.dispatch(handleAuthedUser(key))
-    const path = this.props.userpath
+    const path = this.props.userpath 
     return <Redirect to={path} />
   }
 
   render(){
-    
+
     return (
         <div>
           <p>Please Sign in</p>

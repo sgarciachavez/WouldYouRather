@@ -51,6 +51,5 @@ export function saveQuestionAnswer (answer) {
 }
 
 export function saveNewUser(user){
-  console.log("HERE!!", user)
   return _saveNewUser(user)
 }
